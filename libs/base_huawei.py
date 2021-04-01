@@ -619,31 +619,6 @@ class BaseHuaWei(BaseClient):
 
         try:
             await asyncio.sleep(2)
-            await page.click('li#Add')
-            await asyncio.sleep(5)
-
-            items = await page.querySelectorAll('div.devui-table-view tbody tr')
-            if items and len(items):
-                await page.click('#edit-0')
-                await asyncio.sleep(1)
-            else:
-                await page.click('#add-adds')
-                await asyncio.sleep(1)
-                await page.type('#add-receive-name', '邹华')
-                await page.type('#add-receive-phone', '18664845253')
-                await page.click('#ifDefault .devui-toggle')
-
-            await page.evaluate(
-                '''() =>{ document.getElementById('add-receive-area-info').value = ''; }''')
-            await page.type('#add-receive-area-info', '雄楚大道28号-校友创新中心-MSC江宏中心-3楼壹佰网络')
-            await area(page)
-            await asyncio.sleep(1)
-
-            await page.click('#add-info .devui-checkbox')
-
-            await asyncio.sleep(1)
-            await page.click('#adds-dialog .devui-btn-stress')
-            await asyncio.sleep(2)
         except Exception as e:
             self.logger.error(e)
             self.logger.error(page.url)
