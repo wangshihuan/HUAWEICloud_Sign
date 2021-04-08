@@ -49,7 +49,8 @@ class HuaWei(BaseHuaWei):
         # 3月23日-4月20日
         await self.hdc_floor()
         # 钉钉发送消息
-        await self.print_credit(self.username)
+        if h > 21:
+            await self.print_credit(self.username)
 
         return await self.get_credit()
 
