@@ -35,12 +35,12 @@ class HuaWei(BaseHuaWei):
         self.logger.info(f'now hours: {h}')
         await self.sign_task()
 
-        if h <= 17:
+        if h <= 13:
             await self.check_project()
             await self.start()
             await self.add_address()
 
-        if h > 17:
+        if h > 13:
             await self.delete_project()
             await self.delete_function()
             await self.delete_api()
