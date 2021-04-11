@@ -846,11 +846,11 @@ class BaseHuaWei(BaseClient):
         num = d-4
         await self.page.goto('https://bbs.huaweicloud.com/forum/thread-110201-1-1.html', {'waitUntil': 'load'})
         await self.page.waitForSelector('#fastpostsubmit')
-		await self.page.evaluate('''() =>{ document.querySelector('#tabeditor-2').click(); }''')
+        await self.page.evaluate('''() =>{ document.querySelector('#tabeditor-2').click(); }''')
         await asyncio.sleep(1)
         await self.page.click('#tabeditor-2')
         content = 'day（'+str(num)+'）：2021 HDC预热签到+又是新的一天，继续期待华为HDC大会的到来，也希望今年的HDC上有让人耳目一新的内容和知识，一起加油！'
-		await self.page.type('.textarea', content, {'delay': 30})
+        await self.page.type('.textarea', content, {'delay': 30})
         await asyncio.sleep(1)
         await self.page.click('#fastpostsubmit')
         await asyncio.sleep(30)
@@ -859,10 +859,10 @@ class BaseHuaWei(BaseClient):
     async def hdc_read(self):
         await self.page.goto('https://bbs.huaweicloud.com/forum/thread-117458-1-1.html', {'waitUntil': 'load'})
         await self.page.waitForSelector('#fastpostsubmit')
-		await asyncio.sleep(1)
+        await asyncio.sleep(1)
         await self.page.click('#tabeditor-2')
         content = '打卡!'
-		await self.page.type('.textarea', content, {'delay': 30})
+        await self.page.type('.textarea', content, {'delay': 30})
         await asyncio.sleep(1)
         await self.page.click('#fastpostsubmit')
         await asyncio.sleep(30)
@@ -871,7 +871,7 @@ class BaseHuaWei(BaseClient):
     async def hdc_floor(self):
         await self.page.goto('https://bbs.huaweicloud.com/forum/thread-115425-1-1.html', {'waitUntil': 'load'})
         await self.page.waitForSelector('#fastpostsubmit')
-		await asyncio.sleep(1)
+        await asyncio.sleep(1)
         # 4月6日-4月13日请使用以下口令回帖
         await self.page.click('#tabeditor-2')
         content = random.choice(
