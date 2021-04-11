@@ -846,9 +846,11 @@ class BaseHuaWei(BaseClient):
         num = d-4
         await self.page.goto('https://bbs.huaweicloud.com/forum/thread-110201-1-1.html', {'waitUntil': 'load'})
         await self.page.waitForSelector('#fastpostsubmit')
+		await self.page.evaluate('''() =>{ document.querySelector('#tabeditor-2').click(); }''')
+        await asyncio.sleep(1)
+        await self.page.click('#tabeditor-2')
         content = 'day（'+str(num)+'）：2021 HDC预热签到+又是新的一天，继续期待华为HDC大会的到来，也希望今年的HDC上有让人耳目一新的内容和知识，一起加油！'
-        await self.page.evaluate(
-            '''() =>{ ue.setContent('<p>%s</p>'); }''' % content)
+		await self.page.type('.textarea', content, {'delay': 30})
         await asyncio.sleep(1)
         await self.page.click('#fastpostsubmit')
         await asyncio.sleep(30)
@@ -857,9 +859,10 @@ class BaseHuaWei(BaseClient):
     async def hdc_read(self):
         await self.page.goto('https://bbs.huaweicloud.com/forum/thread-117458-1-1.html', {'waitUntil': 'load'})
         await self.page.waitForSelector('#fastpostsubmit')
+		await asyncio.sleep(1)
+        await self.page.click('#tabeditor-2')
         content = '打卡!'
-        await self.page.evaluate(
-            '''() =>{ ue.setContent('<p>%s</p>'); }''' % content)
+		await self.page.type('.textarea', content, {'delay': 30})
         await asyncio.sleep(1)
         await self.page.click('#fastpostsubmit')
         await asyncio.sleep(30)
@@ -868,7 +871,9 @@ class BaseHuaWei(BaseClient):
     async def hdc_floor(self):
         await self.page.goto('https://bbs.huaweicloud.com/forum/thread-115425-1-1.html', {'waitUntil': 'load'})
         await self.page.waitForSelector('#fastpostsubmit')
+		await asyncio.sleep(1)
         # 4月6日-4月13日请使用以下口令回帖
+        await self.page.click('#tabeditor-2')
         content = random.choice(
                 [
                     '华为云IoT城市物联服务台助力鹰潭城市物联网产业竞争力提升，并着力打造城市名片。目前鹰潭网络建设、公共服务平台建设、示范应用建设领跑全国，已有30+类物联网应用，15万+设备接入。', 
@@ -877,8 +882,7 @@ class BaseHuaWei(BaseClient):
                     '基于华为云IoT设备接入管理服务，SKG实现了手机APP-按 摩仪-云端的智能交互。用户可通过APP选择适合的按 摩功能，还可从云端模式库中下载不同手法的软件包，一键下载、自动安装。', 
                     '华为云IoT携手兆邦基集团，基于园区物联网服务在深圳前海打造高效、智能、绿色、安全的科技大厦，实现楼宇设备全连接、数据全融合、场景全联动、调度全智能，有效节约能耗15%。'
                 ])
-        await self.page.evaluate(
-            '''() =>{ ue.setContent('<p>%s</p>'); }''' % content)
+        await self.page.type('.textarea', content, {'delay': 30})
         await asyncio.sleep(1)
         await self.page.click('#fastpostsubmit')
         await asyncio.sleep(30)
