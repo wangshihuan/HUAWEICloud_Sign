@@ -41,8 +41,8 @@ class HuaWei(BaseHuaWei):
         #     await self.delete_api_group()
 
         # await self.init_account()
-
-        await self.print_credit(self.username)
+        if h > 20:
+            await self.print_credit(self.username)
         return await self.get_credit()
 
     async def login(self, username, password):
